@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Mon Panier</h2>
+<div id="cart-items"></div>
+
+<script src="script.js"></script>
+<script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let container = document.getElementById("cart-items");
+
+    if (cart.length === 0) {
+        container.innerHTML = "<p>Votre panier est vide.</p>";
+    } else {
+        cart.forEach(item => {
+            container.innerHTML += `
+                <div class="cart-product">
+                    <img src="${item.image}" alt="">
+                    <h3>${item.name}</h3>
+                    <p>${item.price}</p>
+                </div>
+            `;
+        });
+    }
+</script>
+
+</body>
+</html>
